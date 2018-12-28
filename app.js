@@ -15,10 +15,10 @@ app.use(bodyParser.urlencoded({extended:true}));
 // signup route
 app.post('/signup', (req, res) => {
   console.log(req.body);
-  const { firstName, lastName, email } = req.body;
+  const { email } = req.body;
 
   // make sure fields are not empty
-  if(!firstName || !lastName || !email) {
+  if(!email) {
     console.log("missing field");
     res.send(false);
     return;
@@ -29,11 +29,7 @@ app.post('/signup', (req, res) => {
     members: [
       {
         email_address: email,
-        status: 'subscribed',
-        merge_fields: {
-          FNAME: firstName,
-          LNAME: lastName
-        }
+        status: 'subscribed'
       }
     ]
   };
