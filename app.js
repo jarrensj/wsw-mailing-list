@@ -20,7 +20,7 @@ app.post('/signup', (req, res) => {
   // make sure fields are not empty
   if(!email) {
     console.log("missing field");
-    res.send(false);
+    res.redirect('http://whiteshoeswednesday.com/fail.html');
     return;
   }
 
@@ -48,16 +48,16 @@ app.post('/signup', (req, res) => {
   request(options, (err, response, body) => {
     if(err) {
       console.log(err);
-      res.send(false);
+      res.redirect('http://whiteshoeswednesday.com/fail.html');
     }
     else {
       if(response.statusCode === 200) {
         console.log(email + " is registered!");
-        res.send(true);
+        res.redirect('http://whiteshoeswednesday.com/success.html');
       }
       else {
         console.log(response.statusCode);
-        res.send(false);
+        res.redirect('http://whiteshoeswednesday.com/fail.html');
       }
     }
 
